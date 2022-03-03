@@ -1,7 +1,7 @@
 from django.db import models
 
 class User(models.Model):
-    username = models.TextField()
+    username = models.TextField(unique=True)
     password = models.TextField()
     time = models.DateField(auto_now_add=True)
 
