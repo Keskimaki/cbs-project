@@ -7,9 +7,24 @@
     <body>
         <h1>Welcome {{ username }}</h1>
 
-        <h1>Your messages</h1>
+        <h2>Your messages</h2>
 
-        <h1>Send a message</h1>
+        <h2>Send a message</h2>
+        
+        <form action="/app" method="post">
+            {% csrf_token %}
+            <p>recipient</p>
+            <select name="receiver">
+                {% for u in users %}
+                <option>{{ u }}</optinon>
+                {% endfor %}
+            </select>
+
+            <p>message</p>
+            <textarea name="content" rows="5" cols="50">Write your message here</textarea>
+            <br>
+            <button type="submit">send</button>
+        </form>
 
     </body>
 </html>
