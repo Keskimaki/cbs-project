@@ -9,3 +9,8 @@ def login(request):
         body = request.POST
 
     return render(request, 'pages/login.html')
+
+def id_generator():
+    id = User.objects.latest('id').id
+    id += 1
+    return id
