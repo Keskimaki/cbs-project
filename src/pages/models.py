@@ -1,3 +1,11 @@
 from django.db import models
 
-# Create your models here.
+class User(models.Model):
+    username = models.TextField()
+    password = models.TextField()
+    time = models.DateField(auto_now_add=True)
+
+class Message(models.Model):
+    content = models.TextField()
+    receiver = models.ForeignKey(User, on_delete=models.CASCADE)
+    time = models.DateField(auto_now_add=True)
