@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from .models import User, Message
 
@@ -46,6 +47,20 @@ def app(request, context=None):
         message.save()
 
         return redirect('/')
+
+def db(request):
+    users = [ f'{user.username};{user.password}' for user in User.objects.all() ]
+    messages = [ f'{message.content};{message.receiver.username}' for message in Message.objects.all() ]
+
+    data = ""
+
+    for user in users:
+        data += user + '\n'
+    data += '\n\n'
+    for message in messages:
+        data += message + '\n'    
+
+    return HttpResponse(data)
 
 def id_generator(user=True):
     if user:
