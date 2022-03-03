@@ -9,11 +9,18 @@
         <a href="/">logout</a>
 
         <h2>Received messages</h2>
+
+        {% for m in messages %}
+        {{ m }} <br>
+        {% endfor %}
+
+        <!--
         <ul>
         {% for m in messages %}
         <li>{{ m }}</li>
         {% endfor %}
         </ul>
+        -->
 
         <h2>Send a message</h2>
         
