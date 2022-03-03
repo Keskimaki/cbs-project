@@ -6,6 +6,7 @@ authors = ["Miko Keskimäki <miko.keskimaki@helsinki.fi>"]
 
 [tool.poetry.dependencies]
 python = "^3.10"
+Django = "^4.0.3"
 
 [tool.poetry.dev-dependencies]
 
