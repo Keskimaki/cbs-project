@@ -20,9 +20,12 @@ def login(request):
         if not user or user.password != body['password']:
             return render(request, 'pages/login.html')
 
-        print('logged in')
+        return app(request, { 'username': body['username'] })
 
     return render(request, 'pages/login.html')
+
+def app(request, user):
+    return render(request, 'pages/app.html', user)
 
 def id_generator():
     id = User.objects.latest('id').id
