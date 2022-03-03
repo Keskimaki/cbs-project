@@ -1,5 +1,4 @@
-from email.mime import message
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from .models import User, Message
 
 def index(request):
@@ -35,9 +34,9 @@ def login(request):
 
     return render(request, 'pages/login.html')
 
-def app(request, user=None):
-    if user:
-        return render(request, 'pages/app.html', user)
+def app(request, context=None):
+    if context:
+        return render(request, 'pages/app.html', context)
 
     if request.method == 'POST':
         body = request.POST
@@ -45,6 +44,8 @@ def app(request, user=None):
 
         message = Message(id=id_generator(False), content=body['content'], receiver=receiver)
         message.save()
+
+        return redirect('/')
 
 def id_generator(user=True):
     if user:
