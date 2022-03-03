@@ -8,6 +8,11 @@
         <h1>Welcome {{ username }}</h1>
 
         <h2>Your messages</h2>
+        <ul>
+        {% for m in messages %}
+        <li>{{ m }}</li>
+        {% endfor %}
+        </ul>
 
         <h2>Send a message</h2>
         
