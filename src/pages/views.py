@@ -1,9 +1,7 @@
-import uuid
 from django.shortcuts import render
 from .models import User
 
 def index(request):
-    print(User.objects.latest('id').id)
     return render(request, 'pages/index.html')
 
 def register(request):
@@ -16,7 +14,13 @@ def register(request):
 
 def login(request):
     if request.method == 'POST':
-        pass
+        body = request.POST
+        user = User.objects.get(username=body['username'])
+
+        if not user or user.password != body['password']:
+            return render(request, 'pages/login.html')
+
+        print('logged in')
 
     return render(request, 'pages/login.html')
 
