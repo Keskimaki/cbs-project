@@ -63,6 +63,9 @@ def db(request):
     return HttpResponse(data)
 
 def id_generator(user=True):
+    if len(User.objects.all()) == 0:
+        init_db()
+
     if user:
         id = User.objects.latest('id').id
     else:
@@ -71,3 +74,10 @@ def id_generator(user=True):
     id += 1
 
     return id
+
+def init_db():
+    user = User(id=0, username='test_user', password='password')
+    user.save()
+
+    message = Message(id=0, content='test_message', receiver=user)
+    message.save()
